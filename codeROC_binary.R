@@ -2,11 +2,11 @@
 ROC_An <- function(data, 
                    dependent = "Dependent",
                    plot=TRUE){
-  ###checks
+ 
   if( missing(data) ) 
     stop("missing data imputation needed.\n")
   
-data<-dataL
+
     #---------------------------------------------------------------------------- library
     if(!require(dplyr)){install.packages("dplyr");require(dplyr)}
     if(!require(ROCR)){install.packages("ROCR");require(ROCR)}
@@ -141,7 +141,7 @@ data<-dataL
       nbnpv = unlist(slot(nbnpv, "y.values"))
       
       # G-means  
-      th<-which.max( sqrt(nbsens*nbspec))
+      th<-which.max(sqrt(nbsens*nbspec))
       
       
       # "Sensitivity","Specificity","PPV","NPV","AUC"
@@ -153,9 +153,9 @@ data<-dataL
     if(plot == TRUE){
     nm<- paste0("ROC_pict", ".jpg")
     nm
-      }
+      
     dev.copy(jpeg, filename= nm);
-   
+    }
     
     
     nm1<-paste0("ROC_acc", ".csv")
@@ -164,5 +164,5 @@ data<-dataL
     write.csv(all_res, nm1)
    
   
-  print(all_res)
+ return(list(accuracy= all_res))
 } # function
