@@ -8,7 +8,6 @@ output: R documents
 
 This is the ROC Analysis of in R. 
 
-```base_ML_.main.R```, ```self_ML_.main.R``` and ```CO_ML_.main.R``` are the main part of the conventional, self training and co-training machine learning of code, respectively. 
 
 
 
