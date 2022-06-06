@@ -1,11 +1,12 @@
  
 ROC_An <- function(data, 
-                   dependent = "Dependent"){
+                   dependent = "Dependent",
+                   plot=TRUE){
   ###checks
   if( missing(data) ) 
     stop("missing data imputation needed.\n")
   
- 
+data<-dataL
     #---------------------------------------------------------------------------- library
     if(!require(dplyr)){install.packages("dplyr");require(dplyr)}
     if(!require(ROCR)){install.packages("ROCR");require(ROCR)}
@@ -15,6 +16,8 @@ ROC_An <- function(data,
     if(!require(stringr)){install.packages("stringr");require(stringr)}
     if(!require(caret)){install.packages("caret");require(caret)}
     #----------------------------------------------------------------------------
+
+  
     
     j<-1
     col_name <- colnames(data)
@@ -32,24 +35,29 @@ ROC_An <- function(data,
     }
     
      
-    dataL<-moveYtoEnd(dataL,  dependent)
-    
+    data<-moveYtoEnd(data,  dependent) # sort of the dependent variable
+    data
+    colnames(data)[dim(data)[2]]<-"Dependent"
     data$Dependent<- as.factor(data$Dependent)
     
     
     
     lvls = levels(data$Dependent)
     lvls
+   
+    
+      
     
     aucs = c()
+    if(plot == TRUE){
     plot(x=NA, y=NA, xlim=c(0,1), ylim=c(0,1),
          ylab='True Positive Rate',
          xlab='False Positive Rate',
          bty='n')
-    
+    }
     head(data);tail(data)
     table(data$Dependent)
-    
+
     acc_need<-  c("Sensitivity", "Specificity", "PPV", "NPV", "AUC")
     all_res <- matrix(NA, nrow = (3), ncol=length(acc_need))
     colnames(all_res)<-acc_need
@@ -85,7 +93,8 @@ ROC_An <- function(data,
       
       roc.x = unlist(nbperf@x.values)
       roc.y = unlist(nbperf@y.values)
-      
+     
+      if(plot == TRUE){ 
       pic <- lines(roc.y ~ roc.x, 
                    col = type.id+1, 
                    lwd=2)
@@ -94,8 +103,8 @@ ROC_An <- function(data,
       nbauc = unlist(slot(nbauc, "y.values"))
       aucs[type.id] = nbauc
       nbauc=round(nbauc,2)
-      kky<-c(0.17, 0.3, 0.45)
-      kkx<-c(0.31, 0.6, 0.8)
+      kky<-c( 0.45)
+      kkx<-c(  0.7)
       xx<-paste0( paste0("AUC: " ,lvls[type.id]), "_vs_others")
       xx
       d_l<-length( names(data))
@@ -104,10 +113,11 @@ ROC_An <- function(data,
   
       
       legend(kkx[type.id], kky[type.id], nbauc,   
-             title =      paste( colnames(data1)[1:(d_l-1)],collapse = "+") , 
+             title =  "AUC", 
              box.lty=0, cex=0.75, text.col = type.id+1
              )
       lines(x=c(0,1), c(0,1))
+      }
       
       #AUC
       nbauc = performance(pred, "auc")
@@ -140,23 +150,19 @@ ROC_An <- function(data,
       all_res<-all_res[1,]
       all_res
       
- 
-  
-    nm<- paste0(paste(colnames(data1)[1:(d_l-1)], collapse='_'), ".jpg")
+    if(plot == TRUE){
+    nm<- paste0("ROC_pict", ".jpg")
     nm
-    
+      }
     dev.copy(jpeg, filename= nm);
    
     
     
-    nm1<-paste0(paste0(paste(names(data)[1:(d_l-1)], collapse='_'), ".csv"))
+    nm1<-paste0("ROC_acc", ".csv")
     nm1
     
     write.csv(all_res, nm1)
    
-    
-    
-
   
   print(all_res)
 } # function
