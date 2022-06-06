@@ -1,11 +1,11 @@
  
 ROC_An <- function(data, 
-                   version = "binary_output"){
+                   dependent = "Dependent"){
   ###checks
   if( missing(data) ) 
     stop("missing data imputation needed.\n")
   
-  if(version == "binary_output"){
+ 
     #---------------------------------------------------------------------------- library
     if(!require(dplyr)){install.packages("dplyr");require(dplyr)}
     if(!require(ROCR)){install.packages("ROCR");require(ROCR)}
@@ -14,15 +14,32 @@ ROC_An <- function(data,
     if(!require(klaR)){install.packages("klaR");require(klaR)}
     if(!require(stringr)){install.packages("stringr");require(stringr)}
     if(!require(caret)){install.packages("caret");require(caret)}
+    #----------------------------------------------------------------------------
     
     j<-1
-    #for (j in 1:(dim(data)[2]-1) ) {
     col_name <- colnames(data)
+    
+    
+      moveYtoEnd<-function(df,  dependent ){ 
+ 
+      yvar<-dependent
+      cnames <- colnames(df)
+      idx <- which(cnames == yvar)
+      idxs <- which(cnames != yvar)
+      orderedNames <- c(cnames[idxs], cnames[idx])
+      df <- subset(df, select=orderedNames)
+      return(df)
+    }
+    
+     
+    dataL<-moveYtoEnd(dataL,  dependent)
+    
     data$Dependent<- as.factor(data$Dependent)
+    
+    
+    
     lvls = levels(data$Dependent)
     lvls
-    
-    #tit<- colnames(data)[j]
     
     aucs = c()
     plot(x=NA, y=NA, xlim=c(0,1), ylim=c(0,1),
@@ -30,11 +47,8 @@ ROC_An <- function(data,
          xlab='False Positive Rate',
          bty='n')
     
-    #main_tit<- tit
-    #title(main =  main_tit)
     head(data);tail(data)
     table(data$Dependent)
-    
     
     acc_need<-  c("Sensitivity", "Specificity", "PPV", "NPV", "AUC")
     all_res <- matrix(NA, nrow = (3), ncol=length(acc_need))
@@ -44,16 +58,15 @@ ROC_An <- function(data,
     
     type.id<-1
     
-    
     inTrain <- createDataPartition(y = data$Dependent, p = 0.8, list = FALSE)
     data_train <- data[inTrain,]
     data_test <- data[-inTrain,]
     dim(data_train)
     
-    #for (type.id in 1:3) {
+  
       data1<-data_train
       colnames(data1)
-      data1$Dependent          =  as.factor(data1$Dependent == lvls[type.id])
+      data1$Dependent    =  as.factor(data1$Dependent == lvls[type.id])
       data1$Dependent
       mytarget <- "Dependent"
       myFormula <- as.formula(paste(paste(mytarget,"~"), colnames(data1)[1]))
@@ -127,7 +140,7 @@ ROC_An <- function(data,
       all_res<-all_res[1,]
       all_res
       
-    #}
+ 
   
     nm<- paste0(paste(colnames(data1)[1:(d_l-1)], collapse='_'), ".jpg")
     nm
@@ -140,10 +153,10 @@ ROC_An <- function(data,
     nm1
     
     write.csv(all_res, nm1)
-    #} #columnlar 
+   
     
     
-}
+
   
   print(all_res)
 } # function
