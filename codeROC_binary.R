@@ -77,8 +77,10 @@ ROC_An <- function(data,
       data1$Dependent    =  as.factor(data1$Dependent == lvls[type.id])
       data1$Dependent
       mytarget <- "Dependent"
-      myFormula <- as.formula(paste(paste(mytarget,"~"), colnames(data1)[1]))
-      myFormula
+      
+ 
+      myFormula <- as.formula(paste(paste(mytarget,"~"),
+                                paste(colnames(data1)[1:(length(colnames(data1))-1)],collapse = "+")
       
       nbmodel       =  NaiveBayes(myFormula, data=data1)
       resp<-which(colnames(data1)=="Dependent")
