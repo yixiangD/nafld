@@ -23,7 +23,7 @@ install.packages(c("dplyr","ROCR","ggplot2", "PRROC", "klaR", "stringr",
 
 
 
-### Example
+### Example for CodeROC_binary.R
 
 If you want to run ROC Analysis, you should define the name of your dependent variable and plot should be TRUE, if you need output of plot.
 
