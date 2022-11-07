@@ -20,7 +20,7 @@ ROC_fin <- function(
   y1<- data[ , y]
   
   roc.s100b <- roc(y1, x1) 
-  auc.s100b <- roc.s100b$auc[1]
+  auc.s100b <- round(roc.s100b$auc[1],4)
   
   if(method == "best"){
     main_res<-round(coords(roc.s100b, "best", ret=c("threshold",  "sensitivity", "specificity", 
