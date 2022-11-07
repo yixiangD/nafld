@@ -23,7 +23,9 @@ install.packages(c("dplyr","ROCR","ggplot2", "PRROC", "klaR", "stringr",
 
 
 ### Example for classic ROC Analysis
-xxxxxxx
+
+You can run 3 different version of the classical ROC analysis. Specify the method with "best","cutoff" or  "maximized". 
+# method = "best"
 
 ### Example for CodeROC_binary.R
 
