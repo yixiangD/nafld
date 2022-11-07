@@ -61,8 +61,8 @@ output
 $specific_cutoff
           threshold sensitivity specificity    ppv    npv accuracy
 threshold      0.11      0.7805      0.4861 0.4638 0.7955   0.5929
+```
 
-    ```
 ### Example for CodeROC_binary.R
 
 If you want to run ROC Analysis, you should define the name of your dependent variable and plot should be TRUE, if you need output of plot.
