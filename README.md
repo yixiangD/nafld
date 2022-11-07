@@ -27,7 +27,7 @@ install.packages(c("dplyr","ROCR","ggplot2", "PRROC", "klaR", "stringr",
 You can run 3 different version of the classical ROC analysis. Specify the method with "best","cutoff" or  "maximized". 
 #### method = "best"
 
-It is selecting the best cut-off based on the indexes, index = c(youden,“closest.topleft”).
+It is selecting the best cut-off based on the indexes, index = c("youden",“closest.topleft”).
 
 ```
 ROC_fin(data = aSAH, 
