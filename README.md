@@ -27,13 +27,22 @@ install.packages(c("dplyr","ROCR","ggplot2", "PRROC", "klaR", "stringr",
 You can run 3 different version of the classical ROC analysis. Specify the method with "best","cutoff" or  "maximized". 
 #### method = "best"
 
+It is selecting the best cut-off based on the indexes, index = c(youden,“closest.topleft”).
+
 ```
 ROC_fin(data = aSAH, 
     x="s100b",
     y="outcome",
-    method = c("best"),
-    index = c("youden"),
+    method = "best",
+    index = "youden",
     cutoff = NULL)
+```
+output
+
+```
+$best_res
+          threshold sensitivity specificity  ppv    npv accuracy
+threshold     0.205      0.6341      0.8056 0.65 0.7945   0.7434
 ```
 
 ### Example for CodeROC_binary.R
