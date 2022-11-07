@@ -58,8 +58,8 @@ output
 
 ```
 $best_res
-          threshold sensitivity specificity  ppv    npv accuracy
-threshold     0.205      0.6341      0.8056 0.65 0.7945   0.7434
+          threshold sensitivity specificity  ppv    npv accuracy  auc
+threshold     0.205      0.6341      0.8056 0.65 0.7945   0.7434  0.75
 ```
 #### method = "cutoff"
 
@@ -76,8 +76,8 @@ output
 
 ```
 $specific_cutoff
-          threshold sensitivity specificity    ppv    npv accuracy
-threshold      0.11      0.7805      0.4861 0.4638 0.7955   0.5929
+          threshold sensitivity specificity    ppv    npv accuracy auc
+threshold      0.11      0.7805      0.4861 0.4638 0.7955   0.5929. 0.75
 ```
 
 #### method = "maximized"
