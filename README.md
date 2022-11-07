@@ -32,11 +32,11 @@ Definition of the parameters
 
 ```
 data: data.frame
-x: biomarker
-y: binary output
-method: 3 different methods c("best", "cutoff", "maximized")
-index: if the method is "best" you can either select the "youden" or "closest.topleft"
-cutoff: you can specify a value in the biomarker range
+x: biomarker.
+y: binary output.
+method: 3 different methods c("best", "cutoff", "maximized").
+index: if the method is "best" you can either select the "youden" or "closest.topleft".
+cutoff: you can specify a value in between the biomarker range.
 ```
 
 ### Example for classic ROC Analysis
