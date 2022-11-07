@@ -63,6 +63,36 @@ $specific_cutoff
 threshold      0.11      0.7805      0.4861 0.4638 0.7955   0.5929
 ```
 
+#### method = "maximized"
+```
+ROC_fin(
+    data = aSAH, 
+    x="s100b",
+    y="outcome",
+    method =   "maximized",
+    index = NULL,
+    cutoff = NULL)
+```
+
+```
+$maximum_sensitivity
+  cut_off       Sen      Spec       PPV       NPV       Acc Minimum_Specificity
+1   0.060 0.9756098 0.1111111 0.3846154 0.8888889 0.4247788                0.01
+2   0.065 0.9756098 0.1388889 0.3921569 0.9090909 0.4424779                0.10
+3   0.090 0.8780488 0.3055556 0.4186047 0.8148148 0.5132743                0.25
+4   0.120 0.7560976 0.5416667 0.4843750 0.7959184 0.6194690                0.50
+5   0.190 0.6341463 0.7777778 0.6190476 0.7887324 0.7256637                0.75
+
+$maximum_specificity
+  cut_off       Sen      Spec       PPV       NPV       Acc Minimum_Sensitivity
+1    0.74 0.1463415 1.0000000 1.0000000 0.6728972 0.6902655                0.01
+2    0.70 0.2195122 1.0000000 1.0000000 0.6923077 0.7168142                0.10
+3    0.54 0.2682927 1.0000000 1.0000000 0.7058824 0.7345133                0.25
+4    0.30 0.5121951 0.8333333 0.6363636 0.7500000 0.7168142                0.50
+5    0.12 0.7560976 0.5416667 0.4843750 0.7959184 0.6194690                0.75
+```
+
+
 ### Example for CodeROC_binary.R
 
 If you want to run ROC Analysis, you should define the name of your dependent variable and plot should be TRUE, if you need output of plot.
