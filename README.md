@@ -6,7 +6,7 @@ output: R documents
 
 # Description
 
-This is the ROC Analysis in R. ```CodeROC_binary.R``` is a ROC analysis from scratch. It uses Naive Bayes Algorithm. pROC is an example to use pROC library. 
+This is the ROC Analysis in R with 2 different methods, classical and machine learning. In classical ROC analysis it uses the conventional ROC analysis with ```pROC``` library. ```CodeROC_binary.R``` is a ROC analysis which combines more then 2 biomarker. It uses Naive Bayes Algorithm. pROC is an example to use pROC library. 
 
 
 
