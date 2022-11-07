@@ -20,7 +20,7 @@ install.packages(c("pROC",  "cutpointr "))
 The main structure of the classical ROC Analysis is:
 
 ```
-ROC_fin <- function(
+ROC_fin(
     data, 
     x,
     y,
