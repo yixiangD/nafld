@@ -12,16 +12,22 @@ ROC_fin <- function(
   
   # if the method is best you can specify the index = c("youden","closest.topleft")
   # cutoff = NULL #you can specify the cutoff
-  
+  # data = aSAH
+  # x="s100b"
+  # y="outcome"
+  # index = "youden"
   x1<- data[ , x]
   y1<- data[ , y]
   
   roc.s100b <- roc(y1, x1) 
+  auc.s100b <- roc.s100b$auc[1]
   
   if(method == "best"){
     main_res<-round(coords(roc.s100b, "best", ret=c("threshold",  "sensitivity", "specificity", 
-                                                    "ppv", "npv", "accuracy"),  
+                                                    "ppv", "npv", "accuracy", "auc"),  
                            best.method = index, transpose = FALSE),4)
+    main_res= cbind(main_res, auc = auc.s100b)
+  
     main_res = list(best_res = main_res)
     
   }else if(method == "cutoff"){
@@ -29,6 +35,7 @@ ROC_fin <- function(
     main_res<-round(coords(roc.s100b, cutoff, ret=c("threshold",  "sensitivity", "specificity", 
                                                     "ppv", "npv", "accuracy"),  
                            best.method = index, transpose = FALSE),4)
+    main_res= cbind(main_res, auc = auc.s100b)
     main_res = list(specific_cutoff = main_res)
   }else{
     
