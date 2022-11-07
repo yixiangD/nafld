@@ -91,7 +91,7 @@ $maximum_specificity
 ```
 
 # 2) Machine Learning (ML) ROC Analysis
-## ii) Requirements for CodeROC_binary.R
+## i) Requirements for CodeROC_binary.R
 
 You must install the related packages below.
 
@@ -101,8 +101,7 @@ install.packages(c("dplyr","ROCR","ggplot2", "PRROC", "klaR", "stringr",
 ```
 
 
-
-### Example for CodeROC_binary.R
+### Example for ML ROC Analysis
 
 If you want to run ROC Analysis, you should define the name of your dependent variable and plot should be TRUE, if you need output of plot.
 
