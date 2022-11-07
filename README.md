@@ -64,6 +64,8 @@ threshold      0.11      0.7805      0.4861 0.4638 0.7955   0.5929
 ```
 
 #### method = "maximized"
+
+Maximizing the specificity and sensitivity based on the minimizing the sensitivity and specificity. 
 ```
 ROC_fin(
     data = aSAH, 
@@ -73,7 +75,7 @@ ROC_fin(
     index = NULL,
     cutoff = NULL)
 ```
-
+output
 ```
 $maximum_sensitivity
   cut_off       Sen      Spec       PPV       NPV       Acc Minimum_Specificity
