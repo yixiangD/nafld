@@ -6,20 +6,16 @@ output: R documents
 
 # Description
 
-This is the ROC Analysis in R with 2 different methods, classical and machine learning. In classical ROC analysis it uses the conventional ROC analysis with ```pROC``` library. ```CodeROC_binary.R``` is a ROC analysis which combines more then 2 biomarker. It uses Naive Bayes Algorithm. pROC is an example to use pROC library. 
+This is the ROC Analysis in R with 2 different methods, classical and machine learning (ML). In classical ROC analysis, it uses the conventional ROC analysis method with ```pROC``` library and in the ML ROC analysis it uses the Naive bases method and combines more then 2 biomarkers.  
 
+# 1) Classical ROC Analysis
 
-
-
-
-### Requirements for CodeROC_binary.R
-
-You must install the related packages below.
-
+## i) Requirements for classic_ROC.R
 ```{r setup1, include=FALSE}
-install.packages(c("dplyr","ROCR","ggplot2", "PRROC", "klaR", "stringr", 
- "caret"))
+install.packages(c("pROC",  "cutpointr "))
 ```
+
+## ii) How the methods works?
 
 
 ### Example for classic ROC Analysis
@@ -93,6 +89,17 @@ $maximum_specificity
 4    0.30 0.5121951 0.8333333 0.6363636 0.7500000 0.7168142                0.50
 5    0.12 0.7560976 0.5416667 0.4843750 0.7959184 0.6194690                0.75
 ```
+
+# 2) Machine Learning (ML) ROC Analysis
+## ii) Requirements for CodeROC_binary.R
+
+You must install the related packages below.
+
+```{r setup1, include=FALSE}
+install.packages(c("dplyr","ROCR","ggplot2", "PRROC", "klaR", "stringr", 
+ "caret"))
+```
+
 
 
 ### Example for CodeROC_binary.R
