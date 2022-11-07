@@ -7,8 +7,11 @@ ROC_fin <- function(
     x,
     y,
     method = c("best", "cutoff", "maximized"),
-    index = c("youden"),
+    index = NULL,
     cutoff = NULL){
+  
+  # if the method is best you can specify the index = c("youden","closest.topleft")
+  # cutoff = NULL #you can specify the cutoff
   
   x1<- data[ , x]
   y1<- data[ , y]
@@ -122,3 +125,4 @@ ROC_fin <- function(
   }
   return(main_res)
 }
+
