@@ -8,7 +8,7 @@ output: R documents
 
 This is the ROC Analysis in R with 2 different methods, classical and machine learning (ML). In classical ROC analysis, it uses the conventional ROC analysis method with ```pROC``` library and in the ML ROC analysis it uses the Naive bases method and combines more then 2 biomarkers.  
 
-# 1) Classical ROC Analysis
+# 1) Classical ROC Analysis (classic_ROC.R)
 
 ## i) Requirements for classic_ROC.R
 ```{r setup1, include=FALSE}
@@ -90,7 +90,7 @@ $maximum_specificity
 5    0.12 0.7560976 0.5416667 0.4843750 0.7959184 0.6194690                0.75
 ```
 
-# 2) Machine Learning (ML) ROC Analysis
+# 2) Machine Learning (ML) ROC Analysis (codeROC_binary.R)
 ## i) Requirements for CodeROC_binary.R
 
 You must install the related packages below.
