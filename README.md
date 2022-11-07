@@ -54,9 +54,10 @@ ROC_fin(
     method =  "cutoff",
     index = NULL,
     cutoff = 0.11)
-    ```
-    output 
-    ```
+```
+output 
+
+```
 $specific_cutoff
           threshold sensitivity specificity    ppv    npv accuracy
 threshold      0.11      0.7805      0.4861 0.4638 0.7955   0.5929
