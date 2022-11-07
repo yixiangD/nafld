@@ -27,6 +27,10 @@ ROC_fin <- function(
     method = c("best", "cutoff", "maximized"),
     index = NULL,
     cutoff = NULL)
+```
+Definition of the parameters
+
+```
 data: data.frame
 x: biomarker
 y: binary output
