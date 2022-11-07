@@ -44,7 +44,23 @@ $best_res
           threshold sensitivity specificity  ppv    npv accuracy
 threshold     0.205      0.6341      0.8056 0.65 0.7945   0.7434
 ```
+#### method = "cutoff"
 
+```
+ROC_fin(
+  data = aSAH, 
+    x="s100b",
+    y="outcome",
+    method =  "cutoff",
+    index = NULL,
+    cutoff = 0.11)
+    ```
+    ```
+$specific_cutoff
+          threshold sensitivity specificity    ppv    npv accuracy
+threshold      0.11      0.7805      0.4861 0.4638 0.7955   0.5929
+
+    ```
 ### Example for CodeROC_binary.R
 
 If you want to run ROC Analysis, you should define the name of your dependent variable and plot should be TRUE, if you need output of plot.
