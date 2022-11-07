@@ -6,7 +6,7 @@ output: R documents
 
 # Description
 
-This is the ROC Analysis in '''R. CodeROC_binary.R''' is a ROC analysis from scratch. It uses Naive Bayes Algorithm. pROC is an example to use pROC library. 
+This is the ROC Analysis in R. ```CodeROC_binary.R``` is a ROC analysis from scratch. It uses Naive Bayes Algorithm. pROC is an example to use pROC library. 
 
 
 
