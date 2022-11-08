@@ -62,7 +62,7 @@ $best_res
 threshold     0.205      0.6341      0.8056 0.65 0.7945   0.7434  0.75
 ```
 #### method = "cutoff"
-
+You need to specify the cutoff point of the biomarker and the function will give you the sensitivity, specificity, ppv, npv, accuracy and auc values for that cutoff point.
 ```
 ROC_fin(
   data = aSAH, 
