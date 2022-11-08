@@ -82,7 +82,7 @@ threshold      0.11      0.7805      0.4861 0.4638 0.7955   0.5929. 0.75
 
 #### method = "maximized"
 
-Maximizing the specificity and sensitivity based on the minimizing the sensitivity and specificity. 
+Maximizing the specificity and sensitivity based on the minimizing the sensitivity and specificity, respectively. 
 ```
 ROC_fin(
     data = aSAH, 
