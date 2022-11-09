@@ -19,14 +19,16 @@ ROC_fin <- function(
   x1<- data[ , x]
   y1<- data[ , y]
   
-  roc.s100b <- roc(y1, x1) 
+  roc.s100b <- roc(y1, x1, ci=TRUE) 
   auc.s100b <- round(roc.s100b$auc[1],4)
+  ci_L<-round(roc.s100b$ci[1],4)
+  ci_U<-round(roc.s100b$ci[3],4)
   
   if(method == "best"){
     main_res<-round(coords(roc.s100b, "best", ret=c("threshold",  "sensitivity", "specificity", 
                                                     "ppv", "npv", "accuracy", "auc"),  
                            best.method = index, transpose = FALSE),4)
-    main_res= cbind(main_res, auc = auc.s100b)
+    main_res= cbind(main_res, auc = auc.s100b, ci_low=ci_L, ci_up=ci_U)
   
     main_res = list(best_res = main_res)
     
@@ -35,7 +37,7 @@ ROC_fin <- function(
     main_res<-round(coords(roc.s100b, cutoff, ret=c("threshold",  "sensitivity", "specificity", 
                                                     "ppv", "npv", "accuracy"),  
                            best.method = index, transpose = FALSE),4)
-    main_res= cbind(main_res, auc = auc.s100b)
+    main_res= cbind(main_res, auc = auc.s100b, ci_low=ci_L, ci_up=ci_U)
     main_res = list(specific_cutoff = main_res)
   }else{
     
