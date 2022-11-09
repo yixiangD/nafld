@@ -15,7 +15,7 @@ This is the ROC Analysis in R with 2 different methods, classical and machine le
 install.packages(c("pROC",  "cutpointr "))
 ```
 
-## ii) How the methods works?
+## ii) How the method works?
 
 The main structure of the classical ROC Analysis is:
 
@@ -41,7 +41,7 @@ cutoff: you can specify a value in between the biomarker range.
 
 ### Example for classic ROC Analysis
 
-You can run 3 different version of the classical ROC analysis. Specify the method with "best","cutoff" or  "maximized". 
+You can run 3 different version of the classical ROC analysis by specifying the method with "best", "cutoff" or  "maximized". 
 #### method = "best"
 
 It is selecting the best cut-off based on the indexes, index = c("youden",“closest.topleft”).
