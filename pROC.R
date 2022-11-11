@@ -1,4 +1,4 @@
-
+ 
 # burda   
 # sadece roc paketi var
 # roc(output,  predict(glm(Y~X1+X2)))
@@ -7,7 +7,7 @@
 
 ROC_An <- function(data, 
                    dependent = "Dependent", 
-                   plot=TRUE){
+                   plot=TRUE){x
   
   if( missing(data) ) 
     stop("missing data imputation needed.\n")
