@@ -147,6 +147,7 @@ and the plot will be like below.
  
 <img width="539" alt="Screen Shot 2022-06-06 at 14 35 04" src="https://user-images.githubusercontent.com/37498443/172224493-8247f89f-15f9-4608-91e8-37a7ea4b0502.png">
 
+# 3) AND and OR Rule in Machine Learning ROC Analysis
 
 
 
