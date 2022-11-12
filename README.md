@@ -173,3 +173,6 @@ https://intellipaat.com/blog/roc-curve-in-machine-learning/
 basit bir ROC combination method, herbir biomarker icin ayrı ayrı ROC analizi yapıyor vs
 https://bmcbioinformatics.biomedcentral.com/articles/10.1186/1471-2105-7-442
 
+Combined biomarkers ML
+
+Assessment of Diagnostic Strategy for Early Recognition of Bullous and Nonbullous Variants of Pemphigoid
