@@ -165,3 +165,7 @@ roc analizi burda ML de en iyi thresholdu predicted probabilityde arar, örneği
 https://intellipaat.com/blog/confusion-matrix-python/
 https://intellipaat.com/blog/roc-curve-in-machine-learning/
 
+
+basit bir ROC combination method, herbir biomarker icin ayrı ayrı ROC analizi yapıyor vs
+https://bmcbioinformatics.biomedcentral.com/articles/10.1186/1471-2105-7-442
+
