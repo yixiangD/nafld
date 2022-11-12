@@ -150,8 +150,8 @@ and the plot will be like below.
 # 3) AND and OR Rule in Machine Learning ROC Analysis
 
  bu kısım tamamlanmadı henuz, ancak asagidaki literatur taraması isimize yarayabilir. bu kısımda eksikler, 
- -ML metodunda cutoff/threshold belirleyemiyoruz (belirlenebilir ama, asagidaki anlatima bak ***, yukarda conventional metodda oldugu gibi biomarker in su degeri icin AUC ROC degerleri sunlar diyemiyoruz)
- -AUC icin CI belirleyemiyoruz
+ i-ML metodunda cutoff/threshold belirleyemiyoruz (belirlenebilir ama, asagidaki anlatima bak ***, yukarda conventional metodda oldugu gibi biomarker in su degeri icin AUC ROC degerleri sunlar diyemiyoruz)
+ ii-AUC icin CI belirleyemiyoruz
 
 https://stats.stackexchange.com/questions/120361/what-is-the-convex-hull-in-roc-curve
 
