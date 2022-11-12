@@ -149,6 +149,8 @@ and the plot will be like below.
 
 # 3) AND and OR Rule in Machine Learning ROC Analysis
 
+ bu kısım tamamlanmadı henuz, ancak asagidaki literatur taraması isimize yarayabilir. bu kısımda eksikler, 
+
 https://stats.stackexchange.com/questions/120361/what-is-the-convex-hull-in-roc-curve
 
 convex hull
