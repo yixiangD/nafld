@@ -150,6 +150,8 @@ and the plot will be like below.
 # 3) AND and OR Rule in Machine Learning ROC Analysis
 
  bu kısım tamamlanmadı henuz, ancak asagidaki literatur taraması isimize yarayabilir. bu kısımda eksikler, 
+ -ML metodunda cutoff/threshold belirleyemiyoruz (belirlenebilir ama, asagidaki anlatima bak ***, yukarda conventional metodda oldugu gibi biomarker in su degeri icin AUC ROC degerleri sunlar diyemiyoruz)
+ -AUC icin CI belirleyemiyoruz
 
 https://stats.stackexchange.com/questions/120361/what-is-the-convex-hull-in-roc-curve
 
@@ -158,7 +160,7 @@ https://pages.stern.nyu.edu/~fprovost/Papers/rocch-mlj.pdf
 
 http://www.bmva.org/bmvc/1998/pdf/p082.pdf
 
-#### ML ROC analizinde roc(actual, predicted_prob)
+#### ML ROC analizinde roc(actual, predicted_prob) ***
 actual        = 1, 0,  1,  0,  0,  0,   1
 predicted_prob=0.6,0.2,0.8,0.2,0.54,0.15,0.9
 
