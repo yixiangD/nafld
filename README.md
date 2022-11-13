@@ -176,3 +176,6 @@ https://bmcbioinformatics.biomedcentral.com/articles/10.1186/1471-2105-7-442
 Combined biomarkers ML
 
 Assessment of Diagnostic Strategy for Early Recognition of Bullous and Nonbullous Variants of Pemphigoid
+
+### AUC-ROC performance 
+https://rpubs.com/dtime/672367
