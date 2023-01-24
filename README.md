@@ -147,35 +147,3 @@ and the plot will be like below.
  
 <img width="539" alt="Screen Shot 2022-06-06 at 14 35 04" src="https://user-images.githubusercontent.com/37498443/172224493-8247f89f-15f9-4608-91e8-37a7ea4b0502.png">
 
-# 3) AND and OR Rule in Machine Learning ROC Analysis
-
- bu kısım tamamlanmadı henuz, ancak asagidaki literatur taraması isimize yarayabilir. bu kısımda eksikler, 
- i-ML metodunda cutoff/threshold belirleyemiyoruz (belirlenebilir ama, asagidaki anlatima bak ***, yukarda conventional metodda oldugu gibi biomarker in su degeri icin AUC ROC degerleri sunlar diyemiyoruz)
- ii-AUC icin CI belirleyemiyoruz
-
-https://stats.stackexchange.com/questions/120361/what-is-the-convex-hull-in-roc-curve
-
-convex hull
-https://pages.stern.nyu.edu/~fprovost/Papers/rocch-mlj.pdf
-
-http://www.bmva.org/bmvc/1998/pdf/p082.pdf
-
-#### ML ROC analizinde roc(actual, predicted_prob) ***
-actual        = 1, 0,  1,  0,  0,  0,   1
-predicted_prob=0.6,0.2,0.8,0.2,0.54,0.15,0.9
-
-roc analizi burda ML de en iyi thresholdu predicted probabilityde arar, örneğin 0.8 i secer (0.75 yani olmayan birini de alabilir), ve 0.8 in uszerindekiler 1 altındakiler 0 olarak atanır.  
-
-https://intellipaat.com/blog/confusion-matrix-python/
-https://intellipaat.com/blog/roc-curve-in-machine-learning/
-
-
-basit bir ROC combination method, herbir biomarker icin ayrı ayrı ROC analizi yapıyor vs
-https://bmcbioinformatics.biomedcentral.com/articles/10.1186/1471-2105-7-442
-
-Combined biomarkers ML
-
-Assessment of Diagnostic Strategy for Early Recognition of Bullous and Nonbullous Variants of Pemphigoid
-
-### AUC-ROC performance 
-https://rpubs.com/dtime/672367
