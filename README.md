@@ -31,7 +31,7 @@ ROC_fin(
 Definition of the parameters
 
 ```
-data: data.frame
+data  : data.frame
 x     : biomarker
 y     : binary output
 method: 3 different methods c("best", "cutoff", "maximized")
