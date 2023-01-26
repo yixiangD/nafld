@@ -110,6 +110,7 @@ $maximum_specificity
 4    0.30 0.5121951 0.8333333 0.6363636 0.7500000 0.7168142                0.50
 5    0.12 0.7560976 0.5416667 0.4843750 0.7959184 0.6194690                0.75
 ```
+$maximum_sensitivity gives the highest sensitivity value based on the minimum specificity values. For instance, for the minimum specificity (Minimum_Specificity) 0.75, we obtained the sensitivity 0.6341463.  
 
 # 2) Machine Learning (ML) ROC Analysis (codeROC_binary.R)
 ## i) Requirements for CodeROC_binary.R
