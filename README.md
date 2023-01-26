@@ -44,7 +44,7 @@ cutoff: if the method is "cutoff", you can specify the cut-off value in between 
 You can run 3 different version of the classical ROC analysis by specifying the method with "best", "cutoff" or  "maximized". 
 #### method = "best"
 
-It is selecting the best cut-off based on the indexes, index = c("youden",“closest.topleft”).
+It is selecting the optimum cut-off based on the indexes( index = c("youden",“closest.topleft”)).
 
 ```
 ROC_fin(data = aSAH, 
