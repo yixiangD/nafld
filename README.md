@@ -112,7 +112,7 @@ $maximum_specificity
 ```
 $maximum_sensitivity gives the highest sensitivity based on the minimum specificity values. For instance, for the minimum specificity (Minimum_Specificity) 0.75, we obtained the sensitivity 0.6341463.  
 
-# 2) Machine Learning (ML) AUC Calculation (codeROC_binary.R)
+# 2) Machine Learning (ML) AUC Calculation (ROC_ML.R)
 ## i) Requirements for CodeROC_binary.R
 
 You must install the related packages below.
