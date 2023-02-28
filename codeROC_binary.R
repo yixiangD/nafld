@@ -1,5 +1,3 @@
-# pROC3 nin gelismis hali
-# burda grafik ve cross validation yok
 
 library(dplyr)
 library(ROCR)
@@ -31,21 +29,17 @@ ROC_Anfin4 <- function(data, dependent = "Dependent",   k=5){
   
   lvls = levels(data$Dependent)
   aucs = c()
-  
-  
   acc_need<-  c("Sensitivity", "Specificity", "PPV", "NPV","ACC", "AUC")
   all_res <- matrix(NA, nrow = (k), ncol=length(acc_need))
   colnames(all_res)<-acc_need
-  
-  
+ 
   rownames(all_res)<-  paste0("row",seq(1:k))
   
   folds <- createFolds(data$Dependent, k = k)
   type.id<-1
   
   for (i in 1:k) {
-    
-    #inTrain <- createDataPartition(y = data$Dependent, p = 0.8, list = FALSE)
+
     testIndex <- folds[[i]]
     
     data_train <- data[-testIndex,]
@@ -69,9 +63,7 @@ ROC_Anfin4 <- function(data, dependent = "Dependent",   k=5){
     
     roc.x = unlist(nbperf@x.values)
     roc.y = unlist(nbperf@y.values)
-    
- 
- 
+   
     #AUC
     nbauc = performance(pred, "auc")
     nbauc = unlist(slot(nbauc, "y.values"))
