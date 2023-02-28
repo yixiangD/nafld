@@ -6,7 +6,7 @@ output: R documents
 
 # Description
 
-This is the ROC Analysis in R with 2 different methods, classical and machine learning (ML). In classical ROC analysis, it uses the conventional ROC analysis method with ```pROC``` library and in the ML ROC analysis it uses the Naive bases method and combines more then 2 biomarkers.  
+This is the ROC Analysis in R with 2 different methods, classical and machine learning (ML). In classical ROC analysis, it uses the conventional ROC analysis method with ```pROC``` library and in the ML ROC analysis it uses the naive Bayes method and combines more then 2 biomarkers.  
 
 # 1) Classical ROC Analysis (classic_ROC.R)
 
