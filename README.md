@@ -128,9 +128,9 @@ install.packages(c("dplyr","ROCR","ggplot2", "PRROC", "klaR", "stringr",
 If you want to run ROC Analysis, you should define the name of your dependent variable and plot should be TRUE, if you need output of plot.
 
 ```{r setup1, include=FALSE}
-ROC_Anfin(data, 
+ROC_Anfin4(data, 
             dependent = "blood_pressure",
-            plot=TRUE)
+            k=5)
 ```
 So the output will be the confusion matrix like below.
 
@@ -143,8 +143,5 @@ Sensitivity Specificity         PPV         NPV    ACC         AUC
 ```
 
 
-and the plot will be like below.  
 
- 
-<img width="539" alt="Screen Shot 2022-06-06 at 14 35 04" src="https://user-images.githubusercontent.com/37498443/172224493-8247f89f-15f9-4608-91e8-37a7ea4b0502.png">
 
