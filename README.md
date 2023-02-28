@@ -125,7 +125,14 @@ install.packages(c("dplyr","ROCR","ggplot2", "PRROC", "klaR", "stringr",
 
 ### Example for ML ROC Analysis
 
-If you want to run ROC Analysis, you should define the name of your dependent variable and plot should be TRUE, if you need output of plot.
+If you want to calculate the AUC using naive Bayes ML algorithm, you should define the name of your dependent variable. You should first prepare the data.
+
+```{r setup1, include=FALSE}
+data = aSAH
+data1<-data %>% 
+  dplyr::select(c("outcome", "s100b", "ndka" ))
+```
+After that, you can run it now. 
 
 ```{r setup1, include=FALSE}
 ROC_Anfin4(data, dependent = "blood_pressure", k=5)
