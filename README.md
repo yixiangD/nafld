@@ -123,7 +123,7 @@ install.packages(c("dplyr","ROCR","ggplot2", "PRROC", "klaR", "stringr",
 ```
 
 
-### Example for ML ROC Analysis
+### Example for ML AUC Calculation
 
 If you want to calculate the AUC using naive Bayes ML algorithm, you should define the name of your dependent variable. You should first prepare the data.
 
