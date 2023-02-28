@@ -16,8 +16,8 @@ ROC_fin <- function(
   # x="s100b"
   # y="outcome"
   # index = "youden"
-  x1<- data[ , x]
-  y1<- data[ , y]
+  x1<- data[[x]]
+  y1<- data[[y]]
   
   roc.s100b <- roc(y1, x1, ci=TRUE) 
   auc.s100b <- round(roc.s100b$auc[1],4)
@@ -29,8 +29,8 @@ ROC_fin <- function(
                                                     "ppv", "npv", "accuracy", "auc"),  
                            best.method = index, transpose = FALSE),4)
     main_res= cbind(main_res, auc = auc.s100b, ci_low=ci_L, ci_up=ci_U)
-  
-    main_res = list(best_res = main_res)
+    
+    main_res = list(best_res = main_res, pl = roc.s100b)
     
   }else if(method == "cutoff"){
     
@@ -38,10 +38,10 @@ ROC_fin <- function(
                                                     "ppv", "npv", "accuracy"),  
                            best.method = index, transpose = FALSE),4)
     main_res= cbind(main_res, auc = auc.s100b, ci_low=ci_L, ci_up=ci_U)
-    main_res = list(specific_cutoff = main_res)
+    main_res = list(specific_cutoff = main_res, pl = roc.s100b)
   }else{
     
-    min_cons<-c(0.01, 0.1, 0.25, 0.5, 0.75)
+    min_cons<-c(0.1, 0.25, 0.5, 0.7)
     
     main_res <- data.frame(cut_off = numeric(),
                            Sen = numeric(),
@@ -56,8 +56,6 @@ ROC_fin <- function(
       # constrain specif
       df_ns<-data.frame(Dependent= data[,y], X1 = data[,x])
       df_ns <- df_ns[complete.cases(df_ns), ]
-      
-      
       
       cp <- cutpointr( x = df_ns[,"X1"], class = df_ns[,"Dependent"],
                        method = maximize_metric,
@@ -95,13 +93,10 @@ ROC_fin <- function(
                            Acc = numeric(),
                            Minimum_Sensitivity = numeric())
     
-    
     for (ix in 1:length(min_cons)) {
       # constrain specif
       df_ns<-data.frame(Dependent= data[,y], X1 = data[,x])
       df_ns <- df_ns[complete.cases(df_ns), ]
-      
-      
       
       cp <- cutpointr(x = df_ns[,"X1"], class = df_ns[,"Dependent"],
                       method = maximize_metric,
@@ -130,8 +125,9 @@ ROC_fin <- function(
       round(main_res,4)
       main_res_max_spec<-main_res
     }
-    main_res =    list(maximum_sensitivity = main_res_max_sens, maximum_specificity = main_res_max_spec)
+    main_res =    list(maximum_sensitivity = main_res_max_sens, 
+                       maximum_specificity = main_res_max_spec, 
+                       pl=roc.s100b)
   }
   return(main_res)
 }
-
