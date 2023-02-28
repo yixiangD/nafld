@@ -135,7 +135,7 @@ dataASAH<-data %>%
 After that, you can run it now. 
 
 ```{r setup1, include=FALSE}
-ROC_Anfin4(v, dependent = "outcome", k=5)
+ROC_Anfin4(dataASAH, dependent = "outcome", k=5)
 ```
 So the output will be the confusion matrix like below.
 
