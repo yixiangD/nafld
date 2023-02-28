@@ -129,13 +129,13 @@ If you want to calculate the AUC using naive Bayes ML algorithm, you should defi
 
 ```{r setup1, include=FALSE}
 data = aSAH
-data1<-data %>% 
+dataASAH<-data %>% 
   dplyr::select(c("outcome", "s100b", "ndka" ))
 ```
 After that, you can run it now. 
 
 ```{r setup1, include=FALSE}
-ROC_Anfin4(data, dependent = "blood_pressure", k=5)
+ROC_Anfin4(v, dependent = "outcome", k=5)
 ```
 So the output will be the confusion matrix like below.
 
