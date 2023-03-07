@@ -6,19 +6,24 @@ library(klaR)
 library(stringr)
 library(caret)
 
+moveYtoEnd <- function(df, dependent) {
+  yvar <- dependent
+  cnames <- colnames(df)
+  idx <- which(cnames == yvar)
+  idxs <- which(cnames != yvar)
+  orderedNames <- c(cnames[idxs], cnames[idx])
+  df <- subset(df, select = orderedNames)
+  return(df)
+}
+
 ROC_Anfin4 <- function(data, dependent = "Dependent", k = 5) {
+  #  data: a data frame containing columns of FEATURES and Dependent
+  #  dependent: char/string variable (column name) in data as the outcome
+  #  variable
+  #  k: number of folds for validation
   stopifnot(!missing(data))
   #----------------------------------------------------------------------------
   col_name <- colnames(data)
-  moveYtoEnd <- function(df, dependent) {
-    yvar <- dependent
-    cnames <- colnames(df)
-    idx <- which(cnames == yvar)
-    idxs <- which(cnames != yvar)
-    orderedNames <- c(cnames[idxs], cnames[idx])
-    df <- subset(df, select = orderedNames)
-    return(df)
-  }
   data <- moveYtoEnd(data, dependent) # sort of the dependent variable
 
   colnames(data)[dim(data)[2]] <- "Dependent"
@@ -52,6 +57,7 @@ ROC_Anfin4 <- function(data, dependent = "Dependent", k = 5) {
 
     nbprediction <- predict(nbmodel, newdata = data_test, type = "raw")
     score <- nbprediction$posterior[, "TRUE"]
+    print(score)
     actual.class <- data_test$Dependent == lvls[type.id]
 
     pred <- prediction(score, actual.class)
@@ -91,7 +97,7 @@ ROC_Anfin4 <- function(data, dependent = "Dependent", k = 5) {
     #   dev.copy(jpeg, filename= nm);
     # }
     nm1 <- paste0("ROC_acc", ".csv")
-    # write.csv(all_res, nm1)
+    write.csv(all_res, nm1)
   } # end of for loop
   resFin <- apply(all_res, 2, mean)
 
