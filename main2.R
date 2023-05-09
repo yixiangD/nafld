@@ -17,7 +17,16 @@ out3 <- "FIBROSIS01" # column named Fibrosis01vs23
 # FIBROSIS F0-2 VS F3-4
 out4 <- "FIBROSIS012" # column named Fibrosis012vs3
 # PRESENCE VS ABSENCE OF BALOONINNG
-out5 <- "BALOONING" # column named AnyBallooning
+out5 <- "BALLOONING" # column named AnyBallooning
 # PRESENCE VS ABSENCE OF INFLAMMATION
 out6 <- "INFLAMMATION" # column named anyinflammation
 # writexl::write_xlsx(summ, paste(outdir, "data_summary.xlsx", sep = "/"))
+
+# create out variable 1
+data[, out1] <- ifelse(grepl("Control", data$`Group Class`), "control", "case")
+# use this for out variable 2
+data2 <- data[!grepl("Control", data$`Group Class`), ]
+
+geo.grp <- "MED" # "AUS", "ALL"
+geo.col <- "Database0Mediterranean1Australian"
+in_var <- input_in_table[1]
