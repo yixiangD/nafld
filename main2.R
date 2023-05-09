@@ -32,5 +32,5 @@ geo.grp <- "MED" # "AUS", "ALL"
 geo.col <- "Database0Mediterranean1Australian"
 in_var <- input_in_table[1]
 source("classic_ROC.R")
-res <- ROC_fin(data[data[[geo.col]] == 1, ], in_var, out1, "maximized")
+res <- ROC_fin(data[data[[geo.col]] == 0, ], in_var, out1, "maximized")
 print(res)

@@ -61,8 +61,8 @@ ROC_fin <- function(
     for (ix in 1:length(min_cons)) {
       # constrain specif
       df_ns <- data.frame(Dependent = data[, y], X1 = data[, x])
+      colnames(df_ns) <- c("Dependent", "X1")
       df_ns <- df_ns[complete.cases(df_ns), ]
-
       cp <- cutpointr(
         x = df_ns[, "X1"], class = df_ns[, "Dependent"],
         method = maximize_metric,
@@ -106,6 +106,7 @@ ROC_fin <- function(
     for (ix in 1:length(min_cons)) {
       # constrain specif
       df_ns <- data.frame(Dependent = data[, y], X1 = data[, x])
+      colnames(df_ns) <- c("Dependent", "X1")
       df_ns <- df_ns[complete.cases(df_ns), ]
 
       cp <- cutpointr(
