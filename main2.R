@@ -12,25 +12,61 @@ colnames(data) <- sapply(colnames(data), function(x) trimws(x))
 # Control vs all
 out1 <- "ControlsVsAll" # derive from column named "Group Class", merge lean & obese, merge NAFL & NASH
 # NAFL VS NASH
-out2 <- "NAFL_NASH" # also from "Group Class"
+out2 <- "controlvsNAFLvsNASH"
 # FIBROSIS F0-1 VS F2-4
-out3 <- "FIBROSIS01" # column named Fibrosis01vs23
+out3 <- "Fibrosis01vs23"
 # FIBROSIS F0-2 VS F3-4
-out4 <- "FIBROSIS012" # column named Fibrosis012vs3
+out4 <- "Fibrosis012vs3"
 # PRESENCE VS ABSENCE OF BALOONINNG
-out5 <- "BALLOONING" # column named AnyBallooning
+out5 <- "AnyBallooning"
 # PRESENCE VS ABSENCE OF INFLAMMATION
-out6 <- "INFLAMMATION" # column named anyinflammation
+out6 <- "anyinflammation"
 # writexl::write_xlsx(summ, paste(outdir, "data_summary.xlsx", sep = "/"))
 
 # create out variable 1
-# data[, out1] <- ifelse(grepl("Control", data$`Group Class`), "control", "case")
-# use this for out variable 2
-data2 <- data[!grepl("Control", data$`Group Class`), ]
+outs <- c(out1, out2, out3, out4, out5, out6)
 
-geo.grp <- "MED" # "AUS", "ALL"
 geo.col <- "Database0Mediterranean1Australian"
-in_var <- input_in_table[1]
 source("classic_ROC.R")
-res <- ROC_fin(data[data[[geo.col]] == 0, ], in_var, out1, "maximized")
-print(res)
+
+gen_res_table <- function(df, input_in_table, out) {
+  sens_res <- c()
+  spec_res <- c()
+  for (in_var in input_in_table) {
+    res <- ROC_fin(df, in_var, out, "maximized")
+    sens <- res$maximum_sensitivity[4, 1:6]
+    sens$feature <- in_var
+    sens_res <- rbind(sens_res, sens)
+
+    spec <- res$maximum_specificity[4, 1:6]
+    spec$feature <- in_var
+    spec_res <- rbind(spec_res, spec)
+  }
+  row.names(sens_res) <- NULL
+  row.names(spec_res) <- NULL
+  return(list(sens = sens_res, spec = spec_res))
+}
+
+for (geo.grp in c("AUS")) {
+  if (geo.grp == "MED") {
+    df <- data[data[[geo.col]] == 0, ]
+  } else if (geo.grp == "AUS") {
+    df <- data[data[[geo.col]] == 1, ]
+  } else {
+    df <- data
+  }
+  print(unique(df[[geo.col]]))
+  for (out in outs) {
+    # use this for out variable 2
+    if (out == out2) {
+      df.loc <- df[df[[out]] > 0, ]
+    } else {
+      df.loc <- df
+      df.loc[[out]] <- ifelse(df.loc[[out]] > 0, 1, 0)
+    }
+    print(out)
+    print(unique(df.loc[[out]]))
+    res <- gen_res_table(df.loc, input_in_table, out)
+    writexl::write_xlsx(res$sens, paste0("results/", geo.grp, out, ".xlsx"))
+  }
+}
