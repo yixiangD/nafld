@@ -33,21 +33,26 @@ gen_res_table <- function(df, input_in_table, out) {
   sens_res <- c()
   spec_res <- c()
   for (in_var in input_in_table) {
-    res <- ROC_fin(df, in_var, out, "maximized")
-    sens <- res$maximum_sensitivity[4, 1:6]
-    sens$feature <- in_var
-    sens_res <- rbind(sens_res, sens)
+    if (sum(is.na(df[[in_var]])) == length(df[[in_var]])) {
+      sens <- NA
+      spec <- NA
+    } else {
+      res <- ROC_fin(df, in_var, out, "maximized")
+      sens <- res$maximum_sensitivity[4, 1:6]
+      sens$feature <- in_var
+      sens_res <- rbind(sens_res, sens)
 
-    spec <- res$maximum_specificity[4, 1:6]
-    spec$feature <- in_var
-    spec_res <- rbind(spec_res, spec)
+      spec <- res$maximum_specificity[4, 1:6]
+      spec$feature <- in_var
+      spec_res <- rbind(spec_res, spec)
+    }
   }
   row.names(sens_res) <- NULL
   row.names(spec_res) <- NULL
   return(list(sens = sens_res, spec = spec_res))
 }
 
-for (geo.grp in c("AUS")) {
+for (geo.grp in c("AUS", "MED", "ALL")) {
   if (geo.grp == "MED") {
     df <- data[data[[geo.col]] == 0, ]
   } else if (geo.grp == "AUS") {
@@ -55,7 +60,7 @@ for (geo.grp in c("AUS")) {
   } else {
     df <- data
   }
-  print(unique(df[[geo.col]]))
+  # print(unique(df[[geo.col]]))
   for (out in outs) {
     # use this for out variable 2
     if (out == out2) {
@@ -64,9 +69,10 @@ for (geo.grp in c("AUS")) {
       df.loc <- df
       df.loc[[out]] <- ifelse(df.loc[[out]] > 0, 1, 0)
     }
-    print(out)
-    print(unique(df.loc[[out]]))
+    # print(out)
+    # print(unique(df.loc[[out]]))
     res <- gen_res_table(df.loc, input_in_table, out)
-    writexl::write_xlsx(res$sens, paste0("results/", geo.grp, out, ".xlsx"))
+    writexl::write_xlsx(res$sens, paste0("results/", geo.grp, out, "_sens.xlsx"))
+    writexl::write_xlsx(res$spec, paste0("results/", geo.grp, out, "_spec.xlsx"))
   }
 }
