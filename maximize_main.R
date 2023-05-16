@@ -16,7 +16,7 @@ out2 <- "NAFLvsNASH"
 # FIBROSIS F0-1 VS F2-4
 out3 <- "F01_234"
 # FIBROSIS F0-2 VS F3-4
-out4 <- "F01_2_34"
+out4 <- "F02_34"
 # PRESENCE VS ABSENCE OF BALOONINNG
 out5 <- "AnyBallooning"
 # PRESENCE VS ABSENCE OF INFLAMMATION
@@ -69,7 +69,7 @@ for (geo.grp in c("AUS", "MED", "ALL")) {
       df.loc <- df
       df.loc[[out]] <- ifelse(df.loc[[out]] > 0, 1, 0)
     }
-    print(df.loc)
+    # print(df.loc)
     print(unique(df.loc[[out]]))
     res <- gen_res_table(df.loc, input_in_table, out)
     writexl::write_xlsx(res$sens, paste0("results/", geo.grp, out, "_sens.xlsx"))

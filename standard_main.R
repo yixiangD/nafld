@@ -16,7 +16,7 @@ out2 <- "NAFLvsNASH"
 # FIBROSIS F0-1 VS F2-4
 out3 <- "F01_234"
 # FIBROSIS F0-2 VS F3-4
-out4 <- "F01_2_34"
+out4 <- "F02_34"
 # PRESENCE VS ABSENCE OF BALOONINNG
 out5 <- "AnyBallooning"
 # PRESENCE VS ABSENCE OF INFLAMMATION
@@ -67,4 +67,4 @@ for (geo.grp in c("ALL")) {
     # writexl::write_xlsx(res$spec, paste0("results/", geo.grp, out, "_spec.xlsx"))
   }
 }
-writexl::write_xlsx(res.final, "results/standard_cutoff.xlsx")
+writexl::write_xlsx(res.final, "results/standard_cutoff_results0516.xlsx")
