@@ -26,7 +26,13 @@ out6 <- "Inflammation_01"
 # create out variable 1
 outs <- c(out1, out2, out3, out4, out5, out6)
 
-print(data[colnames(data)[grepl("TyG", colnames(data))]])
+# update Matina typo of TyGo
+tyg.indc <- which(grepl("TyG", colnames(data)))
+for (ind in tyg.indc) {
+  if (colnames(data)[ind] != "TyG") {
+    colnames(data)[ind] <- "TyGo"
+  }
+}
 # basic checking
 for (i in input_in_table) {
   if (!i %in% colnames(data)) {
@@ -38,7 +44,6 @@ for (i in outs) {
     print(paste(i, "not in sheet", sep = " "))
   }
 }
-stop()
 
 geo.col <- "Bariatric01"
 source("classic_ROC.R")
@@ -74,6 +79,8 @@ for (geo.grp in c("ALL", "0", "1")) {
   }
   print(geo.grp)
   # print(unique(df[[geo.col]]))
+  sens.res <- c()
+  spec.res <- c()
   for (out in outs) {
     # use this for out variable 2
     if (out == out2) {
@@ -85,9 +92,12 @@ for (geo.grp in c("ALL", "0", "1")) {
     # print(df.loc)
     print(unique(df.loc[[out]]))
     res <- gen_res_table(df.loc, input_in_table, out)
+    # res$sens$out <- rep(out, dim(res$sens)[1])
+    res$sens$out <- out
+    res$spec$out <- out
+    sens.res <- rbind(sens.res, res$sens)
+    spec.res <- rbind(spec.res, res$spec)
   }
-  # TODO: add out var as a column
-  res$sens$out <- out
-  writexl::write_xlsx(res$sens, paste0("results/BARB", geo.grp, "_sens.xlsx"))
-  # writexl::write_xlsx(res$spec, paste0("results/", geo.grp, "_spec.xlsx"))
+  writexl::write_xlsx(sens.res, paste0("results/BARB_", geo.grp, "_sens.xlsx"))
+  writexl::write_xlsx(spec.res, paste0("results/BARB_", geo.grp, "_spec.xlsx"))
 }
