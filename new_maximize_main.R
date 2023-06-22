@@ -1,6 +1,11 @@
 data <- readxl::read_excel("data/NAFLD Database_locked_20230615.xlsx", sheet = 2)
 # remove duplicated columns, only keep one replicate
 colnames(data) <- gsub("\\.\\.\\..", "", colnames(data))
+opt <- "no_t2d"
+opt <- ""
+opt <- "bmi<40"
+stopifnot(opt %in% c("bmi<40", "", "no_t2d"))
+
 data <- data[, !duplicated(colnames(data))]
 outdir <- "./results"
 summ <- psych::describe(data)
@@ -25,6 +30,12 @@ out6 <- "Inflammation_01"
 
 # create out variable 1
 outs <- c(out1, out2, out3, out4, out5, out6)
+
+if (opt == "no_t2d") {
+  data <- data[data["DiabetesYES1NO0"] == "0", ]
+} else if (opt == "bmi<40") {
+  data <- data[data["BMIcmm2"] < 40, ]
+}
 
 # update Matina typo of TyGo
 tyg.indc <- which(grepl("TyG", colnames(data)))
@@ -98,6 +109,6 @@ for (geo.grp in c("ALL", "0", "1")) {
     sens.res <- rbind(sens.res, res$sens)
     spec.res <- rbind(spec.res, res$spec)
   }
-  writexl::write_xlsx(sens.res, paste0("results/BARB_", geo.grp, "_sens.xlsx"))
-  writexl::write_xlsx(spec.res, paste0("results/BARB_", geo.grp, "_spec.xlsx"))
+  writexl::write_xlsx(sens.res, paste0("results/BARB_", geo.grp, "_", opt, "_sens.xlsx"))
+  writexl::write_xlsx(spec.res, paste0("results/BARB_", geo.grp, "_", opt, "_spec.xlsx"))
 }
