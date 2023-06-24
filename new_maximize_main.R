@@ -1,9 +1,9 @@
 data <- readxl::read_excel("data/NAFLD Database_locked_20230615.xlsx", sheet = 2)
 # remove duplicated columns, only keep one replicate
 colnames(data) <- gsub("\\.\\.\\..", "", colnames(data))
-opt <- "no_t2d"
-opt <- ""
-opt <- "bmi<40"
+args <- commandArgs(trailingOnly = TRUE)
+opt <- args[1]
+stopifnot(opt %in% c("bmi<40", "", "no_t2d"))
 stopifnot(opt %in% c("bmi<40", "", "no_t2d"))
 
 data <- data[, !duplicated(colnames(data))]

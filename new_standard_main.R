@@ -1,9 +1,8 @@
 data <- readxl::read_excel("data/NAFLD Database_locked_20230615.xlsx", sheet = 2)
 # data <- readxl::read_excel("data/OK. Yixiang_Merged database_Med_Austr.xlsx")
 # remove duplicated columns, only keep one replicate
-opt <- "no_t2d"
-opt <- ""
-opt <- "bmi<40"
+args <- commandArgs(trailingOnly = TRUE)
+opt <- args[1]
 stopifnot(opt %in% c("bmi<40", "", "no_t2d"))
 
 colnames(data) <- gsub("\\.\\.\\..", "", colnames(data))
@@ -13,7 +12,7 @@ summ <- psych::describe(data)
 summ <- cbind(" " = rownames(summ), summ)
 
 input <- c("HSI", "aHSI", "FLI", "AST_ALT", "ALT_AST", "LAP", "TYG", "ION", "FIB4", "NFS", "APRI", "LFS")
-input_in_table <- c("HSI", "aHSI", "FLI", "AST_ALT", "ALT_AST", "LAP", "TyG", "TyGo", "ION", "FIB4", "APRI", "NAFLDLFS_NEW_ATPIII")
+# input_in_table <- c("HSI", "aHSI", "FLI", "AST_ALT", "ALT_AST", "LAP", "TyG", "TyGo", "ION", "FIB4", "APRI", "NAFLDLFS_NEW_ATPIII")
 colnames(data) <- sapply(colnames(data), function(x) trimws(x))
 # Control vs all
 out1 <- "ControlsVsAll" # derive from column named "Group Class", merge lean & obese, merge NAFL & NASH
@@ -44,11 +43,6 @@ for (ind in tyg.indc) {
   }
 }
 # basic checking
-for (i in input_in_table) {
-  if (!i %in% colnames(data)) {
-    print(paste(i, "not in sheet", sep = " "))
-  }
-}
 for (i in outs) {
   if (!i %in% colnames(data)) {
     print(paste(i, "not in sheet", sep = " "))
@@ -61,6 +55,11 @@ source("classic_ROC.R")
 # read cutoff
 df.cutoff <- readxl::read_excel("data/standard_cutoff_matina.xlsx")
 input_in_table <- colnames(df.cutoff)[2:dim(df.cutoff)[2]]
+for (i in input_in_table) {
+  if (!i %in% colnames(data)) {
+    print(paste(i, "not in sheet", sep = " "))
+  }
+}
 
 res.final <- c()
 for (geo.grp in c("ALL", "0", "1")) {
