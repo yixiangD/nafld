@@ -1,18 +1,18 @@
-data <- readxl::read_excel("data/NAFLD Database_locked_20230615.xlsx", sheet = 2)
+data <- readxl::read_excel("data/NEW corrected NFS Yixiang June 26 2023.xlsx", sheet = 2)
 # remove duplicated columns, only keep one replicate
 colnames(data) <- gsub("\\.\\.\\..", "", colnames(data))
 args <- commandArgs(trailingOnly = TRUE)
 opt <- args[1]
-stopifnot(opt %in% c("bmi<40", "", "no_t2d"))
-stopifnot(opt %in% c("bmi<40", "", "no_t2d"))
+stopifnot(opt %in% c("bmi_below_40", "", "no_t2d"))
+stopifnot(opt %in% c("bmi_below_40", "", "no_t2d"))
 
 data <- data[, !duplicated(colnames(data))]
 outdir <- "./results"
-summ <- psych::describe(data)
-summ <- cbind(" " = rownames(summ), summ)
+#summ <- psych::describe(data)
+#summ <- cbind(" " = rownames(summ), summ)
 
 input <- c("HSI", "aHSI", "FLI", "AST_ALT", "ALT_AST", "LAP", "TYG", "ION", "FIB4", "NFS", "APRI", "LFS")
-input_in_table <- c("HSI", "aHSI", "FLI", "AST_ALT", "ALT_AST", "LAP", "TyG", "TyGo", "ION", "FIB4", "APRI", "NAFLDLFS_NEW_ATPIII")
+input_in_table <- c("HSI", "aHSI", "FLI", "AST_ALT", "ALT_AST", "LAP", "TyG", "TyGo", "ION", "FIB4", "APRI", "NFS", "NAFLDLFS_NEW_ATPIII")
 colnames(data) <- sapply(colnames(data), function(x) trimws(x))
 # Control vs all
 out1 <- "ControlsVsAll" # derive from column named "Group Class", merge lean & obese, merge NAFL & NASH
@@ -33,7 +33,7 @@ outs <- c(out1, out2, out3, out4, out5, out6)
 
 if (opt == "no_t2d") {
   data <- data[data["DiabetesYES1NO0"] == "0", ]
-} else if (opt == "bmi<40") {
+} else if (opt == "bmi_below_40") {
   data <- data[data["BMIcmm2"] < 40, ]
 }
 
