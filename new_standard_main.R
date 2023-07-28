@@ -8,8 +8,8 @@ stopifnot(opt %in% c("bmi_below_40", "", "no_t2d"))
 colnames(data) <- gsub("\\.\\.\\..", "", colnames(data))
 data <- data[, !duplicated(colnames(data))]
 outdir <- "./results"
-#summ <- psych::describe(data)
-#summ <- cbind(" " = rownames(summ), summ)
+# summ <- psych::describe(data)
+# summ <- cbind(" " = rownames(summ), summ)
 
 input <- c("HSI", "aHSI", "FLI", "AST_ALT", "ALT_AST", "LAP", "TYG", "ION", "FIB4", "NFS", "APRI", "LFS")
 # input_in_table <- c("HSI", "aHSI", "FLI", "AST_ALT", "ALT_AST", "LAP", "TyG", "TyGo", "ION", "FIB4", "APRI", "NAFLDLFS_NEW_ATPIII")
